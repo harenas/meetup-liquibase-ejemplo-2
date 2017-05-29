@@ -1,0 +1,43 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+	<!-- Change set for Rollback -->
+	<changeSet author="harenas" id="20170427184101">
+		<comment>Agrega tabla de prueba 1</comment>
+        <createTable tableName="prueba_rollback1">
+            <column name="id" type="int"/>
+        </createTable>
+        <rollback>
+        	<dropTable tableName="prueba_rollback1"/>
+        </rollback>
+	</changeSet>
+
+	<changeSet author="harenas" id="20170427184102">
+		<comment>Agrega tabla de prueba 2</comment>
+        <createTable tableName="prueba_rollback2">
+            <column name="id" type="int"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="prueba_rollback2"/>
+        </rollback>
+	</changeSet>
+
+	<changeSet author="harenas" id="20170427184103">
+		<comment>Inserta un registro completo, con error de tipo de dato</comment>
+		<insert tableName="empleados">
+			<column name="rut" value="ABC" />
+			<column name="dv" value="1" />
+			<column name="nombre" value="Ricky" />
+			<column name="apellido" value="Lakes" />
+			<column name="email" value="rlakes@arkhotech.com" />
+			<column name="address" value="Moneda S/N, Santiago, Chile" />
+		</insert>
+        <rollback>
+        	<dropTable tableName="prueba_rollback1"/>
+            <dropTable tableName="prueba_rollback2"/>
+        </rollback>
+	</changeSet>
+
+</databaseChangeLog>

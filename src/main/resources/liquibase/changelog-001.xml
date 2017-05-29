@@ -1,0 +1,38 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+	<changeSet author="harenas" id="20170427184001">
+		<comment>Agrega campo address a la tabla empleados </comment>
+		<addColumn schemaName="public" catalogName="liquibase_ejemplo_2"
+			tableName="empleados">
+			<column name="address" type="varchar(255)" />
+		</addColumn>
+	</changeSet>
+
+	<changeSet author="harenas" id="20170427184002">
+		<comment>Se completan los campos recién agregados con información</comment>
+		<update tableName="empleados">
+			<column name="address" value="Dirección 1" />
+			<where>rut=12345678</where>
+		</update>
+		<update tableName="empleados">
+			<column name="address" value="Dirección 2" />
+			<where>rut=12334455</where>
+		</update>
+	</changeSet>
+
+	<changeSet author="harenas" id="20170427184003">
+		<comment>Inserta un registro completo</comment>
+		<insert tableName="empleados">
+			<column name="rut" value="11111111" />
+			<column name="dv" value="1" />
+			<column name="nombre" value="Juanelo" />
+			<column name="apellido" value="Gómez" />
+			<column name="email" value="jgomez@arkhotech.com" />
+			<column name="address" value="Dirección 3" />
+		</insert>
+	</changeSet>
+
+</databaseChangeLog>

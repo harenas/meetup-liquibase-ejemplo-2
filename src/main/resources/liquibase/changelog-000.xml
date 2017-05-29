@@ -1,0 +1,39 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+ 
+    <changeSet author="harenas (generated)" id="1493273725885-1" runOnChange="true">
+        <createTable tableName="empleados">
+            <column name="rut" remarks="RUT de empleado" type="INT UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="" name="dv" type="CHAR(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nombre" type="VARCHAR(100)"/>
+            <column name="apellido" type="VARCHAR(100)"/>
+            <column name="email" type="VARCHAR(100)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="harenas (generated)" id="1493273725885-2" runOnChange="true">
+        <addPrimaryKey columnNames="rut" constraintName="PRIMARY" tableName="empleados"/>
+    </changeSet>
+
+	<changeSet author="harenas (generated)" id="1493273725885-3" runOnChange="true">
+		<comment>Inserta un registro completo</comment>
+		<insert tableName="empleados">
+			<column name="rut" value="12345678" />
+			<column name="dv" value="K" />
+			<column name="nombre" value="HÉCTOR" />
+			<column name="apellido" value="ARENAS" />
+			<column name="email" value="HARENAS@ARKHOTECH.COM" />
+		</insert>
+		<insert tableName="empleados">
+			<column name="rut" value="12334455" />
+			<column name="dv" value="5" />
+			<column name="nombre" value="JIMMY" />
+			<column name="apellido" value="MUÑOZ" />
+			<column name="email" value="JMUNOZ@ARKHOTECH.COM" />
+		</insert>
+	</changeSet>
+    
+</databaseChangeLog>
